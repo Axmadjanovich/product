@@ -11,7 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ProductDto {
-    @NotNull(message = "ID is null")
     private Integer id;
     @NotBlank(message = "Name is null")
     private String name;
@@ -21,6 +20,7 @@ public class ProductDto {
     @NotNull(message = "Price is null")
     @Positive(message = "Price is less than 0")
     private Double price;
+    private CategoryDto category;
     @NotBlank(message = "Description is null")
     private String description;
 }

@@ -7,8 +7,6 @@ import uz.gc.productservice.model.Product;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface ProductMapper {
-    Product toEntity(ProductDto dto);
-    ProductDto toDto(Product entity);
+public interface ProductMapper extends CommonMapper<ProductDto, Product>{
     List<ProductDto> toDtoList(List<Product> entities);
 }

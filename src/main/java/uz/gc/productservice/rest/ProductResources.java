@@ -6,9 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import uz.gc.productservice.dto.ProductDto;
 import uz.gc.productservice.dto.ResponseDto;
+import uz.gc.productservice.model.ProductCategories;
 import uz.gc.productservice.service.ProductService;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("product")
@@ -27,9 +31,20 @@ public class ProductResources {
         return productService.addProduct(dto);
     }
 
+
+    @GetMapping("expensive")
+    public ResponseDto<List<ProductDto>> getExpensiveProducts(){
+        return productService.getExpensiveProducts();
+    }
+
     @GetMapping
-    public ResponseDto<List<ProductDto>> getAll(){
+    public ResponseDto<Stream<ProductDto>> getAll(){
         return productService.getAll();
+    }
+
+    @GetMapping("params")
+    public ResponseDto<Page<ProductCategories>> getAllWithFilter(@RequestParam Map<String, String> params){
+        return productService.getProductsWithFilter(params);
     }
 
     @GetMapping("by-page")
